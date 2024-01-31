@@ -1,0 +1,14 @@
+CREATE DATABASE crud_room;
+
+USE crud_room;
+
+CREATE TABLE room (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  detail TEXT,
+  price DOUBLE PRECISION NOT NULL,
+  status BOOLEAN NOT NULL,
+  numberOfPerson INT NOT NULL,
+  numberBed INT NOT NULL,
+  PRIMARY KEY (id)
+);
