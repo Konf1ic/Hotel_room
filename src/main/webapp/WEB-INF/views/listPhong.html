@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Phong</title>
+</head>
+<body>
+<h1>List Phong</h1>
+<form action="/phongs/search">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="price">Max Price:</label>
+    <input type="number" id="price" name="price">
+    <button type="submit">Search</button>
+</form>
+<button><a th:href="@{/phongs/add-phong}">Create Phong</a></button>
+<table border="1px">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Detail</td>
+        <td>Price</td>
+        <td>Status</td>
+        <td>Number of Persons</td>
+        <td>Number of Beds</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="phong : ${phongs}">
+        <td th:text="${phong.id}"></td>
+        <td th:text="${phong.name}"></td>
+        <td th:text="${phong.detail}"></td>
+        <td th:text="${phong.price}"></td>
+        <td th:text="${phong.status ? 'Available' : 'Not Available'}"></td>
+        <td th:text="${phong.numberOfPerson}"></td>
+        <td th:text="${phong.numberBed}"></td>
+        <td>
+            <button><a th:href="@{'/phongs/edit/' + ${phong.id}}">Edit</a></button>
+            <button><a th:href="@{'/phongs/details/' + ${phong.id}}">Details</a></button>
+            <button><a th:href="@{'/phongs/delete/' + ${phong.id}}">Delete</a></button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

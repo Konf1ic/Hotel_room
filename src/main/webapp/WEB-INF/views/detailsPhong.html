@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Phong Details</title>
+</head>
+<body>
+<h1>Phong Details</h1>
+<dl>
+    <dt>Name:</dt>
+    <dd th:text="${phong.name}"></dd>
+    <dt>Detail:</dt>
+    <dd th:text="${phong.detail}"></dd>
+    <dt>Price:</dt>
+    <dd th:text="${phong.price}"></dd>
+    <dt>Status:</dt>
+    <dd th:text="${phong.status ? 'Available' : 'Not Available'}"></dd>
+    <dt>Number of Persons:</dt>
+    <dd th:text="${phong.numberOfPerson}"></dd>
+    <dt>Number of Beds:</dt>
+    <dd th:text="${phong.numberBed}"></dd>
+</dl>
+<button><a th:href="@{/phongs}">Back to List</a></button>
+</body>
+</html>
