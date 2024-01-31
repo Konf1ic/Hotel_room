@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface PhongRepository extends CrudRepository<Phong, Long> {
     List<Phong> findPhongByNameContaining(String name);
-    List<Phong> findPhongByPriceLessThanEqual(double price);
 }

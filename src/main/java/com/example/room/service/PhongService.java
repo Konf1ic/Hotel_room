@@ -46,8 +46,4 @@ public class PhongService {
     public List<Phong> searchPhongByName(String name) {
         return phongRepository.findPhongByNameContaining(name);
     }
-
-    public List<Phong> searchPhongByPrice(double price) {
-        return phongRepository.findPhongByPriceLessThanEqual(price);
-    }
 }

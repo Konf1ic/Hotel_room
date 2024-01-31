@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.servlet.ModelAndView;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,15 +46,11 @@ public class PhongController {
     }
 
     @GetMapping("/search")
-    public String searchPhong(@RequestParam("name") String name, @RequestParam("price") double price, Model model) {
+    public String searchPhong(@RequestParam("name") String name, Model model) {
         List<Phong> phongs = new ArrayList<>();
 
         if (!name.isEmpty()) {
             phongs.addAll(phongService.searchPhongByName(name));
-        }
-
-        if (price > 0) {
-            phongs.addAll(phongService.searchPhongByPrice(price));
         }
 
         model.addAttribute("phongs", phongs);
@@ -70,8 +70,15 @@ public class PhongController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deletePhong(@PathVariable Long id) {
+    public ModelAndView deletePhong(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("/delete");
+        modelAndView.addObject("id",id);
+        return modelAndView;
+    }
+    @PostMapping("/delete")
+    public ModelAndView delete(@RequestParam("id") Long id){
+        ModelAndView modelAndView = new ModelAndView("redirect:/phongs");
         phongService.deletePhongById(id);
-        return "redirect:/phongs";
+        return modelAndView;
     }
 }
